@@ -16,7 +16,7 @@ class Logger():
             self.file = env["LOG_FILE"]   
             self.level = Level(log_level=env["LOG_LEVEL"])
         except KeyError as err:
-            raise LoggerConfigError("Проверьте настройки evinoment. Отсутствует поле: {0}".format(err.args), field=err.args)
+            raise LoggerConfigError(message="Проверьте настройки evinoment. Отсутствует поле: {0}".format(err.args), field=str(err.args))
 
     def get_file_handler(self) -> logging.FileHandler:
             file_handler = logging.FileHandler(self.file)

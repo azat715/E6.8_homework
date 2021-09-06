@@ -1,9 +1,9 @@
 import logging
 from dataclasses import InitVar, dataclass
-from typing import ClassVar, List
+from typing import ClassVar, List, Optional
 
 class LoggerConfigError(Exception):
-    def __init__(self, message: str, field: str = None) -> None:
+    def __init__(self, message: str, field: Optional[str] = None) -> None:
         self.field = field
         self.message = message
         super().__init__(self.message)
@@ -14,7 +14,7 @@ class Level():
     log_level: InitVar[str]
     const_level: ClassVar[List[str]] = ["CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG", "NOTSET"]
 
-    def __post_init__(self, log_level):
+    def __post_init__(self, log_level: str):
         """Валидация
 
         Raises:

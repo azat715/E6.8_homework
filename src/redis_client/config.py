@@ -24,7 +24,6 @@ class RedisConfig:
                 raise RedisConfigError(message="Ошибка: Поле {0} равно None".format(field), field=field)
         for field in ["port", "db"]:
             try:
-                print(field)
                 int(getattr(self, field))
             except ValueError:
                 raise RedisConfigError(message="Ошибка: Поле {0} должно быть int".format(field), field=field)
@@ -51,6 +50,6 @@ class RedisConfig:
         try:
             config = cls(host=env["REDIS_HOST"], port=env["REDIS_PORT"], db=env["REDIS_DB"])
         except KeyError as err:
-            raise RedisConfigError("Проверьте настройки evinoment. Отсутствует поле: {0}".format(err.args), field=err.args)
+            raise RedisConfigError("Проверьте настройки evinoment. Отсутствует поле: {0}".format(err.args), field=str(err.args))
         else:
             return config
