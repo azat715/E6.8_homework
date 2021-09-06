@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "example_fastapi_fib"
+version = "0.1.0"
+description = "Сервис должен по GET запросу с параметром k возвращать k-ое число Фибоначчи"
+authors = ["azat715 <azat715@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.68.1"
+uvicorn = "^0.15.0"
+aioredis = "^2.0.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+requests = "^2.26.0"
+mypy = "^0.910"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
