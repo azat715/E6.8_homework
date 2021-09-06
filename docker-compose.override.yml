@@ -1,0 +1,8 @@
+# port 8000 занят
+version: "3"
+
+services:
+
+  backend:
+    ports:
+      - "8001:8000"
