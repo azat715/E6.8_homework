@@ -1,6 +1,4 @@
-from typing import NewType, Optional
-
-Key = NewType('Key', str)
+from typing import Optional
 
 class RedisConfigError(Exception):
     def __init__(self, message: str, field: Optional[str] = None) -> None:

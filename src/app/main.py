@@ -2,7 +2,8 @@ from os import environ as env
 from fastapi import FastAPI
 
 from app import get_logger
-from redis_client import RedisClient, RedisConfig, Key
+from .base import Key, Cache
+from redis_client import RedisClient, RedisConfig
 
 file = bool(env.get("LOG_SAVE_FILE", False))
 
@@ -43,7 +44,7 @@ async def get_fib(k: int):
     """
     logger.info("Запуск api fib")
     key = Key(str(k))
-    r = connect_redis()
+    r: Cache = connect_redis()
     if await r.is_exist(key):
         results = await r.get(key)
         logger.info("Значение {0} получено из redis".format(results))

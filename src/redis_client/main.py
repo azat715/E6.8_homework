@@ -3,7 +3,7 @@ from typing import Union
 import aioredis
 
 from .config import RedisConfig
-from .helper import Key
+from app.base import Key
 
 class RedisClient:
     def __init__(self, config: RedisConfig) -> None:
@@ -16,12 +16,10 @@ class RedisClient:
 
     async def get(self, key) -> Union[str, int, None]:
         res = await self.r.get(key)
-        if res:
-            if isinstance(res, int):
-                return res
-            return res.decode("utf-8")
-        else:
-            return None
+        if isinstance(res, int):
+            return res
+        return res.decode("utf-8")
+
 
     async def is_exist(self, key: Key) -> bool:
         if await self.r.exists(key) == 1:
